@@ -37,7 +37,7 @@
         </select>
       </label>
       <label>Talla (cm):
-        <input type="number" id="talla" />
+        <input type="number" id="talla" min="100" max="200" />
       </label>
       <label>PA Sistólica (mmHg):
         <input type="number" id="sis" />
@@ -51,28 +51,25 @@
     <div class="info" id="umbral"></div>
     <div class="info" id="tallaUsada"></div>
   </main>
+
 <script>
 const datos = {
-  F: {
-    10: { tallas: [129.7, 132.2, 136.3, 141, 145.8, 150.2, 152.8], sys: [109,110,111,112,113,115,113], dia: [72,73,73,73,73,73,73] },
-    11: { tallas: [135.6,138.3,142.8,147.8,152.8,157.3,160], sys: [111,112,113,114,116,118,120], dia: [74,74,74,74,74,75,75] },
-    12: { tallas: [148.1,150.6,154.7,159.2,163.7,167.8,170.2], sys: [114,115,116,118,120,122,122], dia: [75,75,75,75,76,76,76] },
-    13: { tallas: [150.6,153,156.9,161.3,165.7,169.7,172.1], sys: [116,117,119,121,122,123,123], dia: [75,75,75,76,76,76,76] },
-    14: { tallas: [151.7,154,157.9,162.3,166.7,170.6,173], sys: [118,118,120,122,123,123,123], dia: [76,76,76,76,77,77,77] },
-    15: { tallas: [152.1,154.5,158.4,162.8,167.1,171.1,173.4], sys: [118,119,121,122,123,123,124], dia: [76,76,76,77,77,78,78] },
-    16: { tallas: [152.4,154.7,158.7,163,167.4,171.3,173.7], sys: [119,120,122,123,124,124,124], dia: [76,76,76,77,78,78,78] },
-    17: { tallas: [152.4,154.7,158.7,163,167.4,171.3,173.7], sys: [120,121,123,124,124,125,125], dia: [76,76,77,77,78,78,78] }
-  },
-  M: {
-    10: { tallas: [130.2,132.7,136.7,141.3,145.9,150.1,152.7], sys: [108,109,111,112,113,115,116], dia: [72,73,74,74,75,75,76] },
-    11: { tallas: [134.7,137.3,141.5,146.4,151.3,155.8,158.6], sys: [110,111,112,114,116,117,118], dia: [74,74,75,75,75,76,76] },
-    12: { tallas: [147,150,154.9,160.3,165.7,170.5,173.4], sys: [113,114,115,117,119,121,122], dia: [75,75,75,75,75,76,76] },
-    13: { tallas: [153.8,156.9,162,167.5,172.7,177.4,180.1], sys: [115,116,118,121,124,126,126], dia: [74,74,74,75,76,77,77] },
-    14: { tallas: [159,162,166.9,172.2,177.2,181.6,184.2], sys: [119,120,123,126,127,128,129], dia: [74,74,75,77,78,79,80] },
-    15: { tallas: [162.1,165,169.6,174.6,179.5,183.8,186.4], sys: [123,124,126,128,129,130,130], dia: [75,76,78,79,80,81,81] },
-    16: { tallas: [163.8,166.5,170.9,175.8,180.7,184.9,187.5], sys: [126,127,128,129,131,131,132], dia: [77,78,79,80,81,82,82] },
-    17: { tallas: [163.8,166.5,170.9,175.8,180.7,184.9,187.5], sys: [128,129,130,131,132,133,134], dia: [78,79,80,81,82,82,83] }
-  }
+  F: { 10: { tallas:[129.7,132.2,136.3,141,145.8,150.2,152.8], sys:[109,110,111,112,113,115,113], dia:[72,73,73,73,73,73,73] },
+        11:{ tallas:[135.6,138.3,142.8,147.8,152.8,157.3,160], sys:[111,112,113,114,116,118,120], dia:[74,74,74,74,74,75,75] },
+        12:{ tallas:[148.1,150.6,154.7,159.2,163.7,167.8,170.2], sys:[114,115,116,118,120,122,122], dia:[75,75,75,75,76,76,76] },
+        13:{ tallas:[150.6,153,156.9,161.3,165.7,169.7,172.1], sys:[116,117,119,121,122,123,123], dia:[75,75,75,76,76,76,76] },
+        14:{ tallas:[151.7,154,157.9,162.3,166.7,170.6,173], sys:[118,118,120,122,123,123,123], dia:[76,76,76,76,77,77,77] },
+        15:{ tallas:[152.1,154.5,158.4,162.8,167.1,171.1,173.4], sys:[118,119,121,122,123,123,124], dia:[76,76,76,77,77,78,78] },
+        16:{ tallas:[152.4,154.7,158.7,163,167.4,171.3,173.7], sys:[119,120,122,123,124,124,124], dia:[76,76,76,77,78,78,78] },
+        17:{ tallas:[152.4,154.7,158.7,163,167.4,171.3,173.7], sys:[120,121,123,124,124,125,125], dia:[76,76,77,77,78,78,78] }},
+  M: { 10:{ tallas:[130.2,132.7,136.7,141.3,145.9,150.1,152.7], sys:[108,109,111,112,113,115,116], dia:[72,73,74,74,75,75,76] },
+       11:{ tallas:[134.7,137.3,141.5,146.4,151.3,155.8,158.6], sys:[110,111,112,114,116,117,118], dia:[74,74,75,75,75,76,76] },
+       12:{ tallas:[147,150,154.9,160.3,165.7,170.5,173.4], sys:[113,114,115,117,119,121,122], dia:[75,75,75,75,75,76,76] },
+       13:{ tallas:[153.8,156.9,162,167.5,172.7,177.4,180.1], sys:[115,116,118,121,124,126,126], dia:[74,74,74,75,76,77,77] },
+       14:{ tallas:[159,162,166.9,172.2,177.2,181.6,184.2], sys:[119,120,123,126,127,128,129], dia:[74,74,75,77,78,79,80] },
+       15:{ tallas:[162.1,165,169.6,174.6,179.5,183.8,186.4], sys:[123,124,126,128,129,130,130], dia:[75,76,78,79,80,81,81] },
+       16:{ tallas:[163.8,166.5,170.9,175.8,180.7,184.9,187.5], sys:[126,127,128,129,131,131,132], dia:[77,78,79,80,81,82,82] },
+       17:{ tallas:[163.8,166.5,170.9,175.8,180.7,184.9,187.5], sys:[128,129,130,131,132,133,134], dia:[78,79,80,81,82,82,83] }}
 };
 
 const edadSel = document.getElementById('edad');
@@ -93,7 +90,7 @@ function evaluar() {
   const diaVal = parseInt(document.getElementById('dia').value);
 
   if (!edad || !sexo || isNaN(tallaVal) || isNaN(sisVal) || isNaN(diaVal)) {
-    document.getElementById('resultado').textContent = 'Complete todos los campos…';
+    document.getElementById('resultado').textContent = '⚠️ Complete todos los campos.';
     document.getElementById('resultado').className = 'result';
     document.getElementById('umbral').textContent = '';
     document.getElementById('tallaUsada').textContent = '';
@@ -101,19 +98,29 @@ function evaluar() {
   }
 
   const ref = datos[sexo][edad];
+  if (!ref) {
+    document.getElementById('resultado').textContent = 'No hay datos disponibles para esa edad o sexo.';
+    document.getElementById('resultado').className = 'result';
+    return;
+  }
+
   let idx = 0;
   for (let i = 0; i < ref.tallas.length; i++) {
     if (tallaVal >= ref.tallas[i]) idx = i;
     else break;
   }
+
   const sys90 = ref.sys[idx];
   const dia90 = ref.dia[idx];
 
-  document.getElementById('umbral').textContent = `Umbral P90 usado: Sistólica ≥ ${sys90}, Diastólica ≥ ${dia90}`;
-  document.getElementById('tallaUsada').textContent = `Talla de referencia usada: ${ref.tallas[idx]} cm`;
+  const sexoTxt = sexo === 'F' ? 'Mujer' : 'Hombre';
+  document.getElementById('umbral').textContent =
+    `Referencia (P90) — ${sexoTxt}, ${edad} años: Sistólica ≥ ${sys90} mmHg, Diastólica ≥ ${dia90} mmHg`;
+  document.getElementById('tallaUsada').textContent =
+    `Talla de referencia usada: ${ref.tallas[idx]} cm`;
 
   if (sisVal >= sys90 || diaVal >= dia90) {
-    document.getElementById('resultado').innerHTML = `<span class='bad'>ANORMAL</span>`;
+    document.getElementById('resultado').innerHTML = `<span class='bad'>ANORMAL — posible hipertensión</span>`;
     document.getElementById('resultado').className = 'result bad';
   } else {
     document.getElementById('resultado').innerHTML = `<span class='ok'>NORMAL</span>`;
